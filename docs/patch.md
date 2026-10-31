@@ -17,6 +17,17 @@ The patch changes two instructions:
 
 The threshold 19 is ceil(75/4), preserving roughly the call count implied by the original scaling while making the six-bit comparison reachable. Vendor intent and absolute timing are unknown.
 
+## Classic A60 W clear
+
+The vendor image for manufacturer `0x110c`, image type `0x0013`, version `0x01020510` has the same 56-byte function at application address `0x10be76` (OTA offset `0xbed4`). Its two corresponding substitutions are:
+
+| App address | OTA offset | Original | Patched |
+|---|---:|---|---|
+| `0x10be92` | `0xbef0` | `01 f5 00 71` | `01 f1 80 01` |
+| `0x10bea4` | `0xbf02` | `4b 29` | `13 29` |
+
+The A60 trial also updates its own version fields, fixed-length build label, and integrity values. These are separate image layouts; applying Plug 01 offsets or its OTA file to a bulb is incorrect. Matching product and firmware identifiers do not prove a physical unit's entire flash matches the vendor file byte for byte.
+
 ## Interpretation
 
 This is a concrete defect in one cleanup path. It is plausible that it matters when a router hears a neighbor but does not receive evidence of a bidirectional link. It does not prove the defect caused a specific outage. Other aging and route cleanup paths, topology, interference, and coordinator behavior can also affect recovery. No original vendor source code was available.

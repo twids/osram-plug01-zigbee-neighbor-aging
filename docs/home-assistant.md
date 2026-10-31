@@ -11,3 +11,5 @@ This is an experimental manual process for one OSRAM Plug 01. Failed boot recove
 7. Remove the experimental provider and image if you do not intend to keep the test firmware. Do not assume the original image can downgrade the plug.
 
 Consult current Home Assistant, ZHA, and Zigpy documentation for configuration details matching your installed versions. This is not a tested recovery procedure.
+
+For the Classic A60 W clear, the same principles apply, but use **only** its separate builder and image. The tested transition was `0x01020510` to `0x01020511`; the fresh endpoint 3 Basic `sw_build_id` read was `P1.05.11`. Provider matching by model and version is not per-IEEE: install manually on the intended device only and remove the temporary offer afterward. Do not use the Plug 01 OTA for a bulb.

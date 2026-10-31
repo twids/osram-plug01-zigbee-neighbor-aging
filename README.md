@@ -1,8 +1,10 @@
 # OSRAM Plug 01 Zigbee neighbor aging
 
-Experimental firmware analysis and patch for intermittent Zigbee connectivity on the OSRAM LIGHTIFY Plug 01 / Plug 01. This project documents a reverse-engineered stale-neighbor cleanup defect and a narrowly scoped correction.
+Experimental firmware analysis of the OSRAM LIGHTIFY Plug 01 and Classic A60 W clear lamp. Both analyzed vendor images contain the same unreachable stale-neighbor cleanup branch; separate, model-specific trial images correct it.
 
 **Status: experimental.** A modified image was installed and booted on one physical Plug 01 (OTA version 0x0102050a, Basic build label P1.05.10). The owner later reported improved stability after returning it to its original location, while Home Assistant history still showed multi-hour unavailable periods. This is encouraging, but does not prove the patch caused the improvement or is suitable for every unit.
+
+One Classic A60 W clear bulb was also updated with a separately built image (OTA 0x01020511, Basic build P1.05.11). Transfer and a post-boot Zigbee attribute response were observed. Long-term behavior and practical network benefit remain unverified.
 
 ## Symptom and finding
 
@@ -14,15 +16,18 @@ The firmware also contains route discovery and route invalidation paths. This pa
 
 The matching Plug 01 firmware 1.2.5.9 can be downloaded from [LEDVANCE's Zigbee firmware endpoint](https://api.update.ledvance.com/v1/zigbee/firmwares/download?Company=4364&Product=39&Version=1.2.5.9). The endpoint returns the OTA file directly. Expected size: 121,680 bytes. Expected SHA-256: c70126e43666f0a83077e8d93c587b7c0cefcd37d4719ebbeab1e33090b7c3b5. Verify it before building. The vendor binary is not mirrored here.
 
+For the A60 W CLEAR, obtain version 1.2.5.16 (manufacturer 0x110c, image type 0x0013) from the [LEDVANCE firmware overview](https://update.ledvance.com/firmware-overview?sortOrder=manufacturer&submit=all). Expected size: 123,884 bytes; SHA-256: `173e9e77434118ebb5a0d83032063cf594cc201b42277a90e080b196497cf442`. Do not use the Plug 01 image or builder for the bulb.
+
 ## Contents
 
 - [Patch analysis](docs/patch.md)
 - [Build the experimental OTA locally](docs/build.md)
 - [Home Assistant ZHA guide](docs/home-assistant.md)
 - [Testing and limitations](docs/testing.md)
+- [Additional network-code observations](docs/network-review.md)
 
 ## Scope and limitations
 
-Only one physical unit has been reported running the modified firmware. Long-term recovery, rollback, UART recovery, certification, and compatibility across Plug 01 variants are unknown. Installation is manual and intended for a single device. Do not enable network-wide automatic installation.
+One physical unit of each model has been reported running its corresponding modified firmware. Long-term recovery, rollback, UART recovery, certification, and compatibility across variants are unknown. Installation is manual and intended for a single device. Do not enable network-wide automatic installation.
 
 Not affiliated with OSRAM, LEDVANCE, Home Assistant, or the Connectivity Standards Alliance.
