@@ -13,3 +13,5 @@ This is an experimental manual process for one OSRAM Plug 01. Failed boot recove
 Consult current Home Assistant, ZHA, and Zigpy documentation for configuration details matching your installed versions. This is not a tested recovery procedure.
 
 For the Classic A60 W clear, the same principles apply, but use **only** its separate builder and image. The tested transition was `0x01020510` to `0x01020511`; the fresh endpoint 3 Basic `sw_build_id` read was `P1.05.11`. Provider matching by model and version is not per-IEEE: install manually on the intended device only and remove the temporary offer afterward. Do not use the Plug 01 OTA for a bulb.
+
+The later network-correction trials use separate images and source versions: Plug `0x0102050a` → `0x0102050b` / `P1.05.11`; A60 `0x01020511` → `0x01020512` / `P1.05.12`. Restrict provider metadata to the intended model, image type and exact current version, disable automatic updates, and target only the selected device. The firmware remains experimental and a downgrade is not a proven recovery method.

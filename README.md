@@ -6,6 +6,8 @@ Experimental firmware analysis of the OSRAM LIGHTIFY Plug 01 and Classic A60 W c
 
 One Classic A60 W clear bulb was also updated with a separately built image (OTA 0x01020511, Basic build P1.05.11). Transfer and a post-boot Zigbee attribute response were observed. Long-term behavior and practical network benefit remain unverified.
 
+Both devices were subsequently updated with experimental route-cost and unknown-outgoing-link changes. A fresh post-boot read returned `P1.05.11` on the Plug 01 (OTA `0x0102050b`) and `P1.05.12` on the A60 (OTA `0x01020512`). These labels are model-specific; the same label may correspond to different OTA versions on different models. Long-term behavior remains unverified.
+
 ## Symptom and finding
 
 One sibling-neighbor cleanup path increments a six-bit counter by four, masks it to 0–63, then compares it with 75. The removal branch cannot be reached. The candidate increments by one and compares against 19, preserving adjacent packed flags and a similar count-based delay.
